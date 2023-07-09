@@ -4,26 +4,30 @@ import android.content.Context
 import com.abhi41.unittestingexample.model.Quote
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import java.io.IOException
 import java.lang.reflect.Type
 
 
 class QuoteManager {
 
     var quoteList = emptyList<Quote>()
-
     // var quoteArryList = emptyArray<Quote>()
     var currentQuoteIndex = 0
 
     fun populateQuoteFromAssets(context: Context, fileName: String) {
-        val inputStream = context.assets.open(fileName)
-        val size: Int = inputStream.available()
-        val buffer = ByteArray(size)
-        inputStream.read(buffer)
-        inputStream.close()
-        val json = String(buffer, Charsets.UTF_8)
-        val gson = Gson()
-        val listType: Type = object : TypeToken<List<Quote>>() {}.type
-        quoteList = gson.fromJson(json, listType)
+        try {
+            val inputStream = context.assets.open(fileName)
+            val size: Int = inputStream.available()
+            val buffer = ByteArray(size)
+            inputStream.read(buffer)
+            inputStream.close()
+            val json = String(buffer, Charsets.UTF_8)
+            val gson = Gson()
+            val listType: Type = object : TypeToken<List<Quote>>() {}.type
+            quoteList = gson.fromJson(json, listType)
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
         // quoteArryList = gson.fromJson(json, Array<Quote>::class.java)
     }
 

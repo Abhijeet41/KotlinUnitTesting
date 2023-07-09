@@ -26,11 +26,11 @@ class HelperTest {
     @Test
     fun isPallindrome() {
         //Arrange
-        val helper = Helper()
+      //  val helper = Helper()
         //Act
         val result = helper.isPallindrome("hello")
         //Assert
-        //we know hello is not Pallindrome text thats why we define asserEquals false
+        //we know hello is not Pallindrome text that's why we define asserEquals false
         assertEquals(false,result)
         //assertNotEquals() we have different variation
     }
@@ -38,7 +38,7 @@ class HelperTest {
     @Test
     fun isPallindrome_Expected_True() {
         //Arrange
-        val helper = Helper()
+       // val helper = Helper()
         //Act
         val result = helper.isPallindrome("level")
         //Assert

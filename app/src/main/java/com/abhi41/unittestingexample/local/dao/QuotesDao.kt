@@ -13,19 +13,14 @@ interface QuotesDao {
 
     @Insert
     suspend fun insertQuotes(quote: Quote)
-
     @Update
     suspend fun updateQuote(quote: Quote)
-
     @Query("DELETE FROM quote")
     suspend fun delete()
-
     @Query("SELECT * FROM quote")
     fun getQuotes(): LiveData<List<Quote>>
-
     @Query("SELECT * FROM quote")
     fun getQuotesFlow(): Flow<List<Quote>>
-
     @Query("SELECT * FROM quote where id = :quoteId")
     suspend fun getQuoteById(quoteId: Int): Quote
 }
